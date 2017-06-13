@@ -54,7 +54,7 @@
 	</bean>
 
 	<!-- 配置自定义监听：MessageListener -->
-	<bean id="mailQueueMessageListener" class="com.spinach.mq.MailQueueMessageListener"></bean>
+	<bean id="mailQueueMessageListener" class="com.spinach.consumer.mail.mq.MailQueueMessageListener"></bean>
 
 	<!-- 将连接工厂、目标对了、自定义监听注入jms模板 -->
 	<bean id="sessionAwareListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">

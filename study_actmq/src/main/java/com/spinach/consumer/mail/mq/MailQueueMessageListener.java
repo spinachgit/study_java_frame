@@ -7,6 +7,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 import org.springframework.stereotype.Component;
@@ -37,7 +38,7 @@ public class MailQueueMessageListener implements SessionAwareMessageListener<Mes
 		try {
 			TextMessage msg = (TextMessage) message;
 			final String ms = msg.getText();
-			System.out.println("收到消息：" + ms);
+			System.out.println("consumer:收到消息：" + ms);
 			//转换成相应的对象
 			Mail mail = JSONObject.parseObject(ms, Mail.class);
 			if (mail == null) {
@@ -61,4 +62,5 @@ public class MailQueueMessageListener implements SessionAwareMessageListener<Mes
 			e.printStackTrace();
 		}
 	}
+	
 }
