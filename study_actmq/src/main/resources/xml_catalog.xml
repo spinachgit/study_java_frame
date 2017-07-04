@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <system systemId="http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" uri="file:///E:/conf/spring-aop/spring-aop-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" uri="file:///E:/conf/spring-beans/spring-beans-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/context/spring-context-4.0.xsd" uri="file:///E:/conf/spring-context/spring-context-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd" uri="file:///E:/conf/spring-jdbc/spring-jdbc-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/jms/spring-jms-4.0.xsd" uri="file:///E:/conf/spring-jms/spring-jms-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/redis/spring-redis-1.0.xsd" uri="file:///E:/conf/spring-redis/spring-redis-1.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/tool/spring-tool-4.0.xsd" uri="file:///E:/conf/spring-tool/spring-tool-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/tx/spring-tx-4.0.xsd" uri="file:///E:/conf/spring-tx/spring-tx-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/util/spring-util-4.0.xsd" uri="file:///E:/conf/spring-utils/spring-util-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd" uri="file:///E:/conf/spring-webmvc/spring-mvc-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd" uri="file:///E:/conf/spring-websocket/spring-websocket-4.0.xsd"/>
+  <uri name="http://mybatis.org/dtd/mybatis-3-config.dtd" uri="file:///E:/conf/mybatis-3-config.dtd"/>
+  <uri name="http://mybatis.org/dtd/mybatis-3-mapper.dtd" uri="file:///E:/conf/mybatis-3-mapper.dtd"/>
+  <system systemId="http://www.springframework.org/schema/task/spring-task-4.0.xsd" uri="file:///E:/conf/spring-context/spring-task-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/cache/spring-cache-4.0.xsd" uri="file:///E:/conf/spring-context/spring-cache-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/jee/spring-jee-4.0.xsd" uri="file:///E:/conf/spring-context/spring-jee-4.0.xsd"/>
+  <system systemId="http://www.springframework.org/schema/lang/spring-lang-4.0.xsd" uri="file:///E:/conf/spring-context/spring-lang-4.0.xsd"/>
+</catalog>

@@ -1,0 +1,19 @@
+echo off;
+export DATE=$(date +%Y%m%d) ;
+echo -----------------------日志开始：$(date +%Y-%m-%d-%H:%M:%S)-------------------------
+echo "catalina.out处理"
+#cp /u03/fm_logs/catalina.out /u03/fm_logs/catalina.out.$(DATE);
+rm -rf /u03/fm_logs/catalina.out
+touch  /u03/fm_logs/catalina.out
+chmod 666  /u03/fm_logs/catalina.out
+
+echo fm.log处理
+#cp /u03/fm_logs/fm.log /u03/fm_logs/fm.log.$(DATE)
+rm -rf /u03/fm_logs/fm.log
+touch  /u03/fm_logs/fm.log
+chmod 666  /u03/fm_logs/fm.log
+
+
+
+
+*/1 * * * * /u03/log_clear.sh
