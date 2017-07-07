@@ -39,4 +39,11 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>my_eclipse_catalog.xml</name>
+			<type>1</type>
+			<location>E:/conf/my_eclipse_catalog.xml</location>
+		</link>
+	</linkedResources>
 </projectDescription>
