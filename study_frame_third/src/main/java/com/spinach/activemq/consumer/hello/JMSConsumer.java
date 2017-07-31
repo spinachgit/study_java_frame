@@ -1,4 +1,4 @@
-package com.spinach.consumer.hello;
+package com.spinach.activemq.consumer.hello;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;

@@ -1,4 +1,4 @@
-package com.spinach.provider.hello;
+package com.spinach.activemq.provider.hello;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;

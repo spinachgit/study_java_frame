@@ -1,4 +1,4 @@
-package com.spinach.consumer.mail.entity;
+package com.spinach.activemq.consumer.mail.entity;
 
 public class Mail {
 

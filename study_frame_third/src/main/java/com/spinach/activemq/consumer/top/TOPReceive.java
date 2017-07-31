@@ -1,4 +1,4 @@
-package com.spinach.consumer.top;
+package com.spinach.activemq.consumer.top;
 
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -18,29 +18,39 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTopic;
 
 public class TOPReceive {
-	// 连接账号
+	/**
+	 * 连接账号
+	 */
 	private String userName = ActiveMQConnectionFactory.DEFAULT_USER;
-	// 连接密码
+	/**
+	 *  连接密码
+	 */
 	private String password = ActiveMQConnectionFactory.DEFAULT_USER;
-	// 连接地址
+	/**
+	 *  连接地址
+	 */
 	private String brokerURL = "tcp://127.0.0.1:61616";
 	/**
 	 * connection的工厂 点对点：ConnectionFactory
 	 */
-	private TopicConnectionFactory factory;
+	private TopicConnectionFactory topicConnectionFactory;
 	/**
 	 * 连接对象 TopicConnection Connection
 	 */
-	private TopicConnection connection;
+	private TopicConnection topicConnection;
 	/**
 	 * 一个操作会话 Session TopicSession
 	 */
-	private TopicSession session;
+	private TopicSession topicSession;
 	/**
-	 * 目的地，其实就是连接到哪个队列，如果是点对点，那么它的实现是Queue，如果是订阅模式，那它的实现是Topic Destination Topic
+	 * 目的地，其实就是连接到哪个队列; 
+	 * 点对点:Queue  ----> Queue extends Destination
+	 * 订阅模式:Topic  ---->  Topic extends Destination
 	 */
 	private Topic topic;
-	// 生产者，就是产生数据的对象
+	/**
+	 * 生产者，就是产生数据的对象
+	 */
 	private MessageConsumer consumer;
 
 	public static void main(String[] args) {
@@ -51,13 +61,13 @@ public class TOPReceive {
 	public void start() {
 		try {
 			// 根据用户名，密码，url创建一个连接工厂
-			factory = new ActiveMQConnectionFactory(userName, password, brokerURL);
+			topicConnectionFactory = new ActiveMQConnectionFactory(userName, password, brokerURL);
 			// 从工厂中获取一个连接
 			// connection = factory.createConnection();
-			connection = factory.createTopicConnection();
+			topicConnection = topicConnectionFactory.createTopicConnection();
 
 			// 测试过这个步骤不写也是可以的，但是网上的各个文档都写了
-			connection.start();
+			topicConnection.start();
 			// 创建一个session
 			// 第一个参数:是否支持事务，如果为true，则会忽略第二个参数，被jms服务器设置为SESSION_TRANSACTED
 			// 第二个参数为false时，paramB的值可为Session.AUTO_ACKNOWLEDGE，Session.CLIENT_ACKNOWLEDGE，DUPS_OK_ACKNOWLEDGE其中一个。
@@ -66,32 +76,49 @@ public class TOPReceive {
 			// DUPS_OK_ACKNOWLEDGE允许副本的确认模式。一旦接收方应用程序的方法调用从处理消息处返回，会话对象就会确认消息的接收；而且允许重复确认。
 			// session = connection.createSession(false,
 			// Session.AUTO_ACKNOWLEDGE);
-			session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
+			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
 			// =======================================================
 			// 点对点与订阅模式唯一不同的地方，就是这一行代码，点对点创建的是Queue，而订阅模式创建的是Topic
-			topic = session.createTopic("topic-spinach");
-
+			topic = topicSession.createTopic("topic-spinach");
+			
 			// =======================================================
 
 			// 从session中，获取一个消息生产者
 			// consumer = session.createConsumer(topic);
-			TopicSubscriber consumer = session.createSubscriber(topic);
-			//receiveMessage(consumer);
-			consumer.setMessageListener(new MessageListener() {
+			TopicSubscriber consumer = topicSession.createSubscriber(topic);
+			
+			// 注册消费者1
+			MessageConsumer comsumer1 = topicSession.createConsumer(topic);
+			comsumer1.setMessageListener(new MessageListener() {
+				public void onMessage(Message msg) {
+					if (msg != null) {
+						try {
+							System.out.println("Consumer1 get " + ((TextMessage) msg).getText());
+						} catch (JMSException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			});
+			
+			
+			
+			receiveMessage(consumer);
+			/*consumer.setMessageListener(new MessageListener() {
 				public void onMessage(Message msg) {
 					try {
 						System.out.println("Consumer get " + ((TextMessage) msg).getText());
 						
 						msg.acknowledge(); //如果session.CLIENT_ACKNOWLEDGE
-	                	System.out.println(session.getAcknowledgeMode());
-	                	session.commit(); //如果：connection.createSession(Boolean.TRUE,"xxx")
+	                	System.out.println(topicSession.getAcknowledgeMode());
+	                	topicSession.commit(); //如果：connection.createSession(Boolean.TRUE,"xxx")
 						
 					} catch (JMSException e) {
 						e.printStackTrace();
 					}
 				}
-			});
+			});*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,16 +132,16 @@ public class TOPReceive {
 				}
 			}
 			
-			if (session != null) {
+			if (topicSession != null) {
 				try {
-					session.close();
+					topicSession.close();
 				} catch (JMSException e) {
 					e.printStackTrace();
 				}
 			}
-			if (connection != null) {
+			if (topicConnection != null) {
 				try {
-					connection.close();
+					topicConnection.close();
 				} catch (JMSException e) {
 					e.printStackTrace();
 				}

@@ -1,4 +1,4 @@
-package com.spinach.provider.top;
+package com.spinach.activemq.provider.top;
 import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
@@ -47,7 +47,7 @@ public class TOPSend {
                 //Session.CLIENT_ACKNOWLEDGE为客户端确认。客户端接收到消息后，必须调用javax.jms.Message的acknowledge方法。jms服务器才会当作发送成功，并删除消息。
                 //DUPS_OK_ACKNOWLEDGE允许副本的确认模式。一旦接收方应用程序的方法调用从处理消息处返回，会话对象就会确认消息的接收；而且允许重复确认。
                 //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-                TopicSession topicSession = topicConnection.createTopicSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+                TopicSession topicSession = topicConnection.createTopicSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);
                 
                 //创建一个到达的目的地，其实想一下就知道了，activemq不可能同时只能跑一个队列吧，这里就是连接了一个名为"text-msg"的队列，这个会话将会到这个队列，当然，如果这个队列不存在，将会被创建
                 
@@ -65,7 +65,7 @@ public class TOPSend {
 	                publisher.send(topicSession.createTextMessage("aaa"+i));
 	                //sendMessage(topicSession, publisher);
 	                System.out.println("消息: aaa"+i);
-	                topicSession.commit();
+	                //topicSession.commit();   //topicSession(true,...)
                 }
                 
                 /*

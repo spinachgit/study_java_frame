@@ -1,4 +1,4 @@
-package com.spinach.provider.mail.entity;
+package com.spinach.activemq.provider.mail.entity;
 
 public class Mail {
 

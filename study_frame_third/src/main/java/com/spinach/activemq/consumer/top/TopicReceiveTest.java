@@ -1,4 +1,4 @@
-package com.spinach.consumer.top;
+package com.spinach.activemq.consumer.top;
 
 import javax.jms.Connection;
 import javax.jms.JMSException;

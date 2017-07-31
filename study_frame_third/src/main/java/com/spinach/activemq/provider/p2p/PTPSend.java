@@ -1,17 +1,16 @@
-package com.spinach.consumer.p2p;
+package com.spinach.activemq.provider.p2p;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
-public class PTPReceive {
+public class PTPSend {
     //连接账号
     private String userName = ActiveMQConnectionFactory.DEFAULT_USER;
     //连接密码
@@ -26,11 +25,12 @@ public class PTPReceive {
     private Session session;
     //目的地，其实就是连接到哪个队列，如果是点对点，那么它的实现是Queue，如果是订阅模式，那它的实现是Topic
     private Destination destination;
-    //消费者，就是接收数据的对象
-    private MessageConsumer consumer;
+    //生产者，就是产生数据的对象
+    private MessageProducer producer;
+    
     public static void main(String[] args) {
-        PTPReceive receive = new PTPReceive();
-        receive.start();
+        PTPSend send = new PTPSend();
+        send.start();
     }
     
     public void start(){
@@ -50,32 +50,24 @@ public class PTPReceive {
             session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
             //创建一个到达的目的地，其实想一下就知道了，activemq不可能同时只能跑一个队列吧，这里就是连接了一个名为"text-msg"的队列，这个会话将会到这个队列，当然，如果这个队列不存在，将会被创建
             destination = session.createQueue("text-msg");
-            //根据session，创建一个接收者对象
-            consumer = session.createConsumer(destination);
+            //从session中，获取一个消息生产者
+            producer = session.createProducer(destination);
+            //设置生产者的模式，有两种可选
+            //DeliveryMode.PERSISTENT 当activemq关闭的时候，队列数据将会被保存
+            //DeliveryMode.NON_PERSISTENT 当activemq关闭的时候，队列里面的数据将会被清空
+            producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             
+            //创建一条消息，当然，消息的类型有很多，如文字，字节，对象等,可以通过session.create..方法来创建出来
+            TextMessage textMsg = session.createTextMessage("呵呵");
+            for(int i = 0 ; i < 10 ; i ++){
+                //发送一条消息
+                producer.send(textMsg);
+            }
             
-            //实现一个消息的监听器
-            //实现这个监听器后，以后只要有消息，就会通过这个监听器接收到
-            consumer.setMessageListener(new MessageListener() {
-            	int flag = 0;
-                @Override
-                public void onMessage(Message message) {
-                    try {
-                    	++flag;
-                        //获取到接收的数据
-                        String text = ((TextMessage)message).getText();
-                        System.out.println(text);
-                        if(flag%2==0){
-                        	message.acknowledge(); //如果session.CLIENT_ACKNOWLEDGE
-                        }
-                    	System.out.println(session.getAcknowledgeMode());
-                    } catch (JMSException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            //关闭接收端，也不会终止程序哦
-//            consumer.close();
+            System.out.println("发送消息成功");
+            //即便生产者的对象关闭了，程序还在运行哦
+            producer.close();
+            
         } catch (JMSException e) {
             e.printStackTrace();
         }

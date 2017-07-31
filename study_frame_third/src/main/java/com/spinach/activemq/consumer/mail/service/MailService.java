@@ -1,4 +1,4 @@
-package com.spinach.consumer.mail.service;
+package com.spinach.activemq.consumer.mail.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import com.spinach.consumer.mail.entity.Mail;
+import com.spinach.activemq.consumer.mail.entity.Mail;
 
 @Service("mailService")
 public class MailService {

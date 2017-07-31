@@ -1,5 +1,5 @@
 
-package com.spinach.provider.mail.mq;
+package com.spinach.activemq.provider.mail.mq;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -11,7 +11,7 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.spinach.provider.mail.entity.Mail;
+import com.spinach.activemq.provider.mail.entity.Mail;
 
 
 /**

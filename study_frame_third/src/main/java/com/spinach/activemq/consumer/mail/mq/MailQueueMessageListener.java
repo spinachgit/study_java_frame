@@ -1,5 +1,5 @@
 
-package com.spinach.consumer.mail.mq;
+package com.spinach.activemq.consumer.mail.mq;
 
 import javax.jms.Destination;
 import javax.jms.Message;
@@ -12,8 +12,8 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 import org.springframework.stereotype.Component;
 
-import com.spinach.consumer.mail.entity.Mail;
-import com.spinach.consumer.mail.service.MailService;
+import com.spinach.activemq.consumer.mail.entity.Mail;
+import com.spinach.activemq.consumer.mail.service.MailService;
 import com.alibaba.fastjson.JSONObject;
 
 /**
