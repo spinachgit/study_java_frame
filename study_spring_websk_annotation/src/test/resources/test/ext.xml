@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>framework-parent</artifactId>
+		<groupId>com.ch.framework</groupId>
+		<version>2.1.4-RELEASE</version>
+	</parent>
+	<artifactId>framework-extension</artifactId>
+	<name>framework-extension</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ch.framework</groupId>
+			<artifactId>framework-core</artifactId>
+		</dependency>
+
+
+		<!-- Web begin -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- servlet 3.0 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<!-- jsp 2.2-->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>			
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>			
+		</dependency>
+		<!-- Web end -->
+		
+		<!-- hessian begin -->
+		<dependency>
+		  <groupId>com.caucho</groupId>
+		  <artifactId>hessian</artifactId>
+		  <optional>true</optional>
+		</dependency>
+		<!-- hessian end -->
+		<!-- mybatis generator begin -->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- mybatis generator end -->
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<classifier>ftp</classifier>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-lang</groupId>
+					<artifactId>commons-lang</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- shiro begin -->
+		<!-- SECURITY begin -->
+		<!-- <dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>			
+		</dependency>
+		-->
+		
+		<!-- <dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>			
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-quartz</artifactId>			
+		</dependency> -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<optional>true</optional>		
+		</dependency>	
+		<dependency>		
+		  <groupId>org.apache.shiro</groupId>
+		  <artifactId>shiro-cas</artifactId>
+		  <optional>true</optional>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>	  
+		</dependency>
+		<!-- SECURITY end -->
+		
+		<!-- 没有办法只能重复加载 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>			
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- source attach plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>			
+		</plugins>
+	</build>
+
+</project>

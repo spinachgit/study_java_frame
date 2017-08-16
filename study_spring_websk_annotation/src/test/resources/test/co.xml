@@ -1,0 +1,241 @@
+﻿<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>framework-parent</artifactId>
+		<groupId>com.ch.framework</groupId>
+		<version>2.1.4-RELEASE</version>
+	</parent>
+	<artifactId>framework-core</artifactId>
+	<name>framework-core</name>
+	<url>http://maven.apache.org</url>
+ 
+	<dependencies>
+		
+		<!-- Logging begin -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	<!-- 	<dependency>   
+		    <groupId>org.logback-extensions</groupId>  
+		    <artifactId>logback-ext-spring</artifactId> 
+		    <scope>runtime</scope>		     
+		</dependency>  --> 
+ 
+		<!-- 代码直接调用log4j会被桥接到slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- 代码直接调用commons-logging会被桥接到slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- 代码直接调用java.util.logging会被桥接到slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- log4jdbc 将jdbc的sql和参数融合打印到日志中 -->
+		<dependency>
+			<groupId>com.googlecode.log4jdbc</groupId>
+			<artifactId>log4jdbc</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Logging end -->
+
+		<!-- Spring aop begin -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<!-- Spring aop end -->
+
+		<!-- SPRING basic[email/scheduler/freemarker] support begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- SPRING basic[email/scheduler/freemarker] support end -->
+		
+		<!-- Java mail begin-->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>			
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+		</dependency>
+		<!-- Java mail end-->
+
+		<!-- Persistence begin -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<!-- Persistence end -->
+
+		<!-- Web begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<!-- Web end -->
+		
+	
+		
+		<!-- jsr303 validator begin-->
+		<dependency>
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-validator</artifactId>	  
+		</dependency>
+		<!-- jsr303 validator end-->
+
+		<!-- Utils begin -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<!-- <dependency>  
+  			<groupId>org.apache.commons</groupId>
+  			<artifactId>com.springsource.org.apache.commons.collections</artifactId>
+		</dependency> -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<!-- spring-redis begin -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>				
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<!-- spring-redis end -->
+		
+		<!-- dubbo begin -->
+	    <dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+	    <!-- dubbo end -->
+		
+		<!-- mongodb -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>		
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-orm</artifactId> 
+			<version>${spring.version}</version> </dependency> <dependency> <groupId>commons-fileupload</groupId> 
+			<artifactId>commons-fileupload</artifactId> <optional>true</optional> </dependency>
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-core</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+	    -->
+	    
+		<!-- framework test begin-->
+		<!-- <dependency>
+			<groupId>com.ch.framework</groupId>
+			<artifactId>framework-test</artifactId>	
+		</dependency> -->			
+		<!-- framework test end-->
+		 
+		<!-- Utils end -->
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<!-- source attach plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

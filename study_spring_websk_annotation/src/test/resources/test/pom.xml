@@ -1,0 +1,387 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>library</artifactId>
+		<groupId>com.ch.framework</groupId>
+		<version>1.1.4-SNAPSHOT</version> 
+	</parent>
+	<groupId>com.ch.examples</groupId>
+	<artifactId>quickstart</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>quickstart Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<!-- 设置项目编码utf-8 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<!-- <dependency>
+			<groupId>com.ch.framework</groupId>
+			<artifactId>framework-system</artifactId>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.ch.framework</groupId>
+			<artifactId>framework-system</artifactId>
+			<type>warpath</type>
+		</dependency> -->
+
+		<!-- Jdbc driver begin -->
+		<dependency>
+			<groupId>oracle.jdbc</groupId>
+			<artifactId>oracle-jdbc</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Jdbc driver end -->
+		
+		<!-- mockito driver begin -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- mockito driver end -->
+		
+		<!-- mockito driver begin -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.9.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>dom4j</groupId>
+		  <artifactId>dom4j</artifactId>
+		  <version>1.6.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-api</artifactId>
+		    <version>2.7.18</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+		    <version>2.7.18</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.codehaus.woodstox</groupId>
+		  <artifactId>stax2-api</artifactId>
+		  <version>4.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.adcc.webservice</groupId>
+		  <artifactId>SkyWebService</artifactId>
+		  <version>1.0</version>
+		</dependency>
+    	
+		<!-- mockito driver end -->
+		<!-- 20160901 begin-->
+		<!-- json begin -->
+		<dependency>
+		  <groupId>net.sf.json-lib</groupId>
+		  <artifactId>json-lib</artifactId>
+		  <version>2.2.3</version>
+		</dependency>
+		<!-- json end -->
+		<dependency>
+		  <groupId>apache-log4j</groupId>
+		  <artifactId>log4j</artifactId>
+		  <version>1.2.15</version>
+		</dependency>
+		<dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>servlet-api</artifactId>
+		  <version>3.1</version>
+		</dependency>
+		<!-- 20160901 end-->
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>4.5.1</version>
+		</dependency>
+		
+		<!-- Connection pool begin -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<!-- Connection pool end -->
+
+		<!-- Web begin -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Web end -->
+
+		<!-- Test Begin -->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+		</dependency>
+		<!-- Test end -->
+		<!-- framework test begin-->
+		<dependency>
+			<groupId>com.ch.framework</groupId>
+			<artifactId>framework-test</artifactId>		
+		</dependency>			
+		<!-- framework test end-->
+
+		<!-- google-collections begin zhao niannian2016.09.20 add-->
+		<dependency>
+			<groupId>com.google.collections</groupId>
+			<artifactId>google-collections</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- google-collections begin -->
+		
+		<!-- xfire begin zhao niannian2016.09.20 add-->
+		<dependency>
+		  <groupId>org.codehaus.xfire</groupId>
+		  <artifactId>xfire-jaxb2</artifactId>
+		  <version>1.2.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.xfire</groupId>
+		    <artifactId>xfire-spring</artifactId>
+		    <version>1.2.2</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.springframework</groupId>
+		    		<artifactId>spring</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.xfire</groupId>
+		    <artifactId>xfire-java5</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.codehaus.xfire</groupId>
+		    <artifactId>xfire-aegis</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<!-- xfire end-->
+		
+		<!-- activemq-all-5.5.1 zhao niannian 2016.09.26 -->
+		<dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-all</artifactId>
+		  <version>5.4.1</version>
+		</dependency>
+		<!-- activemq-all-5.5.1 end-->
+		
+		<!-- jms zhao niannian 2016.09.26 -->
+		<dependency>
+		  <groupId>javax.jms</groupId>
+		  <artifactId>jms</artifactId>
+		  <version>1.1</version>
+		  <classifier>sources</classifier>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jms</artifactId>
+		  <version>4.0.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-websocket</artifactId>
+		  <version>4.0.5.RELEASE</version>
+		</dependency>
+		
+		<!-- jms end-->
+		<!-- redis -->			
+		<dependency>
+		  <groupId>org.springframework.data</groupId>
+		  <artifactId>spring-data-redis</artifactId>
+		  <version>1.8.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		  <groupId>redis.clients</groupId>
+		  <artifactId>jedis</artifactId>
+		  <version>2.9.0</version>
+		</dependency>
+				
+ 		 <dependency> 
+		  <groupId>com.ibm</groupId>
+		  <artifactId>com.ibm.mq</artifactId>
+		  <version>6.0.0</version>
+		</dependency>
+		<dependency> 
+		  <groupId>com.ibm</groupId>
+		  <artifactId>com.ibm.mqjms</artifactId>
+		  <version>6.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>javax.resource</groupId>
+		  <artifactId>connector</artifactId>
+		  <version>1.0</version>
+		</dependency>   
+		<dependency>
+		  <groupId>com.ibm</groupId>
+		  <artifactId>com.ibm.dhbcore</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat7-websocket</artifactId>
+			<version>7.0.64</version>
+		</dependency>
+		-->
+		<!-- Web begin -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- servlet 3.0 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+		<!-- jsp 2.2-->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>			
+		</dependency>
+		<!-- <dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>			
+		</dependency> -->
+		<!-- Web end -->
+		
+	</dependencies>
+	<build>
+		<finalName>quickstart</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>  
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</testResource>
+		</testResources>
+		
+		
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<!-- 默认会变成在target/war/work导致被打包进war文件,指定后为target/work 
+					<workDirectory>/work</workDirectory>-->
+					<webappDirectory>WebContent</webappDirectory>
+					<useCache>false</useCache>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+					</archive>
+					<overlays>
+						<!-- <overlay>
+							<groupId>com.isoftstone.gads</groupId>
+							<artifactId>ebiz-common-web</artifactId>
+						</overlay> -->
+						<overlay>
+							<!-- empty groupId/artifactId is detected as the current build -->
+							<!-- 代表当前WAR项目，默认情况下当前WAR项目是先被拷贝的，如果要控制其顺序，则使用空的overlay -->
+							<!-- any other overlay will be applied after the current build since 
+								they have not been configured in the overlays element -->
+						</overlay>
+					</overlays>
+					<dependentWarExcludes>*/web.xml,WEB-INF/lib/*,/sql-map-config.xml,/jdbc.properties,/META-INF/*</dependentWarExcludes>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.appfuse.plugins</groupId>
+				<artifactId>maven-warpath-plugin</artifactId>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<goals>
+							<goal>add-classes</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration><!-- below WEB-INF/classes -->
+					<warpathExcludes>**/logback-test.xml</warpathExcludes>
+				</configuration>
+			</plugin>
+			
+			<!-- tomcat plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+			
+			<!-- 跳过单元测试 -->
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-surefire-plugin</artifactId>
+		        <configuration>
+		          <skip>true</skip>
+		        </configuration>
+	       </plugin>
+	       
+	       <!-- tomcat plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8080</port>
+				    <warSourceDirectory>${basedir}/WebContent</warSourceDirectory>				
+				</configuration>			
+			</plugin>
+		</plugins>
+	</build>
+</project>

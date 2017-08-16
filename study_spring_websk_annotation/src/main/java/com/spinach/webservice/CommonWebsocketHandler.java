@@ -1,8 +1,10 @@
 package com.spinach.webservice;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -14,6 +16,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.spinach.domain.UserInfo;
+import com.spinach.utils.CommonTool;
+import com.spinach.utils.DateUtil;
+
+import net.sf.json.JSONObject;
 
 @Component
 public class CommonWebsocketHandler{
@@ -21,7 +27,7 @@ public class CommonWebsocketHandler{
 	/**
 	 * 取得websocket已经建立连接的 WebSocketSession对象。
 	 */
-	private Map<String,WebSocketSession> clients = WebSocketSessionUtils.clients;
+	private static Map<String,WebSocketSession> clients = WebSocketSessionUtils.clients;
 	
 	/**
 	 * <p>
@@ -95,5 +101,87 @@ public class CommonWebsocketHandler{
 		Long endTime = System.currentTimeMillis();
 		logger.info("发送消息耗时:===" + (endTime - startTime) + "ms");
 	}
-
+	
+	/**
+	 * <p>
+	 * 	获得所有在线的： websocket连接用户列表
+	 * </p>
+	 * @author wanghuihui
+	 * @date 2017-6-2下午3:39:54
+	 * @return
+	 */
+	public static List<UserInfo> getAllWebSocketUsers(){
+		Iterator<Entry<String, WebSocketSession>> iterator = clients.entrySet().iterator();
+		List<UserInfo> userList = null;
+		if(clients.size() == 0){
+			return userList;
+		}else{
+			userList = new ArrayList<UserInfo>(clients.size());
+		}
+		while (iterator.hasNext()) {
+			Map.Entry<String, WebSocketSession> entry = (Map.Entry<String, WebSocketSession>) iterator.next();
+			WebSocketSession session = entry.getValue();
+			Object obj = session.getAttributes().get("loginUser");
+			JSONObject temp = JSONObject.fromObject(obj);
+			UserInfo loginUser = (UserInfo) JSONObject.toBean(temp, UserInfo.class);
+			userList.add(loginUser);
+		}
+		return userList;
+	}
+	
+	/**
+	 * <p>
+	 *  给用户发送消息
+	 * </p>
+	 * @author wanghuihui
+	 * @date 2017-8-3下午7:48:38
+	 * @param user：用户信息
+	 * @param url ：消息路径
+	 * @param content ：消息内容
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	public static void sendMessage(UserInfo user,String url, String content) throws InstantiationException, IllegalAccessException {
+		if(user == null || user.getName() == null ||StringUtils.isEmpty(url)){
+			logger.error("消息发送的用户，或者路径不能为空！");
+			return;
+		}
+		Long startTime = System.currentTimeMillis();
+		logger.info("消息发送开始=====:url="+url+" ======:userAccount="+user+"======时间："+DateUtil.datesToString(new Date())+" ");
+		List<WebSocketSession> lists = getSession(user,url);
+		for(WebSocketSession session : lists){
+			WebSocketSessionUtils.sendMessage(session,new TextMessage(content));
+		}
+		Long endTime = System.currentTimeMillis();
+		logger.info("发送消息耗时:===" + (endTime - startTime) + "ms");
+	}
+	
+	/**
+	 * <p>
+	 *  获得当前用记的SESSION
+	 * </p>
+	 * @author wanghuihui
+	 * @date 2017-8-3下午7:55:16
+	 * @param user : 用户 不能为空。
+	 * @param url ： 路径，不能为空
+	 * @return
+	 */
+	private static List<WebSocketSession> getSession(UserInfo user, String url) {
+		Iterator<Entry<String, WebSocketSession>> iterator = clients.entrySet().iterator();
+		List<WebSocketSession> result = new ArrayList<WebSocketSession>(); 
+		while (iterator.hasNext()) {
+			Map.Entry<String, WebSocketSession> entry = (Map.Entry<String, WebSocketSession>) iterator.next();
+			WebSocketSession session = entry.getValue();
+				//发送对应URL的消息
+				if(url.endsWith(session.getUri().toString()) ){
+					Object obj = session.getAttributes().get("loginUser");
+					JSONObject temp = JSONObject.fromObject(obj);
+					UserInfo loginUser = (UserInfo) JSONObject.toBean(temp, UserInfo.class);
+					if(true){//根据条件增加
+						result.add(session) ;
+					}
+				}
+		}
+		return result ; 
+	}
 }
